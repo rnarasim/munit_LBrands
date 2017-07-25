@@ -20,5 +20,6 @@ http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/mu
         <munit:set payload="#[[{'orderID':444, 'location':'worldwide','price':44.04}, {'orderID':555, 'location':'worldwide','price':55.05}, {'orderID':333, 'location':'national','price':33.03}]]" doc:name="Set Payload for International and Domestic Orders"/>
         <flow-ref name="processOrders" doc:name="Flow Reference"/>
         <munit:assert-true message="#[ 'Expected payload to be of type java.util.Map but got: '  + payload.getClass().getName()]" condition="#[(payload is java.util.Map)]" doc:name="Assert True"/>
+        <munit:assert-on-equals message="#[&quot;Expected Map of Size 2. But got&quot; + payload.size()]" expectedValue="#[2]" actualValue="#[payload.size()]" doc:name="Assert Equals"/>
     </munit:test>
 </mule>
